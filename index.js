@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
+  
 
   const newPagePromise = new Promise(x => browser.once('targetcreated', target => x(target.page())));
 
