@@ -21,9 +21,10 @@ const puppeteer = require('puppeteer');
   console.log(popup.url());
 
   await popup.waitForSelector('.titlemlop');
-  const text = await popup.evaluate(() => Array.from(document.querySelectorAll('.titlemlop'), element => element.lastElementChild.textContent));
-  const time = await popup.evaluate(() => Array.from(document.querySelectorAll('.titlemlop'), element => element.querySelectorAll('td')[1].textContent));
-  const DateVal = await popup.evaluate(() => Array.from(document.querySelectorAll('.titlemlop'), element => element.querySelectorAll('td')[0].textContent));
+  const text = await popup.evaluate(() => Array.from(document.querySelectorAll('.titlemlop'), element => {return {text : element.lastElementChild.textContent,
+                                                                                                                 time : element.querySelectorAll('td')[1].textContent,
+                                                                                                                 dateVal : element.querySelectorAll('td')[0].textContent
+                                                                                                                 }));
 
   var from = "-Aug-19 9:30:00";
   var to = "-Aug-19 ";
